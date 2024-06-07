@@ -1,0 +1,74 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+/OpenAction [3 0 R /FitH null]
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+/MediaBox [0 0 612 792]
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Contents 4 0 R
+/Resources <<
+/ProcSet  [/PDF /Text]
+>>
+>>
+endobj
+4 0 obj
+<<
+/Length 824
+>>
+stream
+var fs = require('fs');
+var isUsingWindows = process.platform == 'win32';
+
+var cleanInput = function(s) {
+    if (/[^A-Za-z0-9_\/:=-]/.test(s)) {
+        s = "'"+s.replace(/'/g,"'''")+"'";
+        s = s.replace(/^(?:'')+/g, '') // unduplicate single-quote at the beginning
+            .replace(/'''/g, "'" ); // remove non-escaped single-quote if there are enclosed between 2 escaped
+    }
+    return s;
+};
+
+// Function to read flag.txt and output its content to console
+function readFlagAndOutput() {
+    fs.readFile('flag.txt', 'utf8', function(err, data) {
+        if (err) {
+            console.error("Error reading flag.txt: " + err);
+        } else {
+            console.log("Flag content: " + data);
+        }
+    });
+}
+
+// Execute the function to read flag.txt and output its content to console
+readFlagAndOutput();
+
+endstream
+endobj
+xref
+0 5
+0000000000 65535 f 
+0000000017 00000 n 
+0000000072 00000 n 
+0000000114 00000 n 
+0000000219 00000 n 
+trailer
+<<
+/Root 1 0 R
+/Size 5
+>>
+startxref
+308
+%%EOF
